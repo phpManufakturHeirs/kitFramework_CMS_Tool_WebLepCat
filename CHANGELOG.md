@@ -4,6 +4,10 @@
 Ralf Hertsch, Stockholmer Str. 31, 13359 Berlin (Germany)
 http://phpManufaktur.de - ralf.hertsch@phpManufaktur.de
 
+**0.42** - 2015-02-04
+
+* first release after author's death, contains the last changes he made
+
 **0.41** - 2014-09-14
 
 * Changed formatting within the `tool.php` to grant that the background is always white and the extensions have a padding of 5px around to the CMS
