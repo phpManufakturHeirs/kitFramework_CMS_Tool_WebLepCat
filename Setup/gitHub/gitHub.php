@@ -19,6 +19,7 @@ class gitHub {
     protected static $proxy_auth = CURLAUTH_BASIC;
     protected static $proxy_port = null;
     protected static $proxy_usrpwd = null;
+    protected static $auth = 'kitFrameworkAccess:f44dcc29c2bc33e4cc306db826fcc4000f6b8f76';
 
     public function __construct()
     {
@@ -57,7 +58,7 @@ class gitHub {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        curl_setopt($ch, CURLOPT_USERPWD, "fd881e98b9f76fcd9f4d80e8c1cfca68ee9e35b4:x-oauth-basic");
+        curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
 
         if (!is_null(self::$proxy)) {
             curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
@@ -88,7 +89,10 @@ class gitHub {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        curl_setopt($ch, CURLOPT_USERPWD, "fd881e98b9f76fcd9f4d80e8c1cfca68ee9e35b4:x-oauth-basic");
+        curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
+
+        // for debugging only
+        // curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 
         if (!is_null(self::$proxy)) {
             curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
@@ -105,6 +109,10 @@ class gitHub {
         curl_close($ch);
         $result = json_decode($result, true);
         return (!isset($info['http_code']) || ($info['http_code'] != '200')) ? false : true;
+    }
+
+    public function getAuth() {
+        return self::$auth;
     }
 
     /**

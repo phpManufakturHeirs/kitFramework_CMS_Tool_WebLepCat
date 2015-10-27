@@ -39,6 +39,8 @@ class Setup
     protected static $proxy_port = null;
     protected static $proxy_usrpwd = null;
 
+    protected static $auth = null;
+
     protected $JSONFormat = null;
 
     const USERAGENT = 'kitFramework::Interface';
@@ -70,11 +72,13 @@ class Setup
         }
         // init the GitHub interface
         $gitHub = new gitHub();
+        self::$auth = $gitHub->getAuth();
+
         // get the kitFramework repository data
-        if (false === (self::$kitFramework_zip_url = $gitHub->getLastRepositoryZipUrl('phpManufaktur', 'kitFramework', self::$kitFramework_version)))
+        if (false === (self::$kitFramework_zip_url = $gitHub->getLastRepositoryZipUrl('phpManufakturHeirs', 'kitFramework', self::$kitFramework_version)))
             throw new \Exception("Can't get the last ZIP repository of the kitFramework");
         // get the kfBasic repository data
-        if (false === (self::$basicExtension_zip_url = $gitHub->getLastRepositoryZipUrl('phpManufaktur', 'kfBasic', self::$basicExtension_version)))
+        if (false === (self::$basicExtension_zip_url = $gitHub->getLastRepositoryZipUrl('phpManufakturHeirs', 'kfBasic', self::$basicExtension_version)))
             throw new \Exception("Can't get the last ZIP repository of the kitFramework Basic Extension");
 
         self::$download_method = 'UNKNOWN';
@@ -143,7 +147,7 @@ class Setup
             curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_USERPWD, "fd881e98b9f76fcd9f4d80e8c1cfca68ee9e35b4:x-oauth-basic");
+            curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
             if (!is_null(self::$proxy)) {
                 curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
                 curl_setopt($ch, CURLOPT_PROXY, self::$proxy);
@@ -168,7 +172,7 @@ class Setup
             curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_USERPWD, "fd881e98b9f76fcd9f4d80e8c1cfca68ee9e35b4:x-oauth-basic");
+            curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
             if (!is_null(self::$proxy)) {
                 curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
                 curl_setopt($ch, CURLOPT_PROXY, self::$proxy);
