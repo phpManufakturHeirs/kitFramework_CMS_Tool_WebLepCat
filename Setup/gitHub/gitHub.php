@@ -58,7 +58,7 @@ class gitHub {
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-        curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
+        // curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
 
         if (!is_null(self::$proxy)) {
             curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
@@ -80,35 +80,7 @@ class gitHub {
 
     protected function authenticate()
     {
-        $command = "https://api.github.com/user";
-        if (false === ($ch = curl_init($command))) {
-            throw new \Exception('Got no handle for cURL!');
-        }
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-        curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
-
-        // for debugging only
-        // curl_setopt($ch, CURLINFO_HEADER_OUT, true);
-
-        if (!is_null(self::$proxy)) {
-            curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
-            curl_setopt($ch, CURLOPT_PROXY, self::$proxy);
-            curl_setopt($ch, CURLOPT_PROXYPORT, self::$proxy_port);
-            curl_setopt($ch, CURLOPT_PROXYUSERPWD, self::$proxy_usrpwd);
-        }
-        if (false === ($result = curl_exec($ch))) {
-            throw new \Exception(curl_error($ch));
-        }
-        if (!curl_errno($ch)) {
-            $info = curl_getinfo($ch);
-        }
-        curl_close($ch);
-        $result = json_decode($result, true);
-        return (!isset($info['http_code']) || ($info['http_code'] != '200')) ? false : true;
+        return true; // no longer need for authentication
     }
 
     public function getAuth() {

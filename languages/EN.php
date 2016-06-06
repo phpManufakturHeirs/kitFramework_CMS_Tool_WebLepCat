@@ -23,5 +23,5 @@ $module_description = 'Additional Applications and Extensions for your Content M
 
 $LANGUAGE = array(
         'addons_support_group'
-            => 'Please help to improve Open Source Software and report this problem to the <a href="https://support.phpmanufaktur.de" target="_blank">phpManufaktur Addons Support</a> Group.'
+            => 'Please help to improve Open Source Software and report this problem to the <a href="http://forum.blackcat-cms.org/viewforum.php?f=24" target="_blank">kitFramework Forum</a>.'
         );

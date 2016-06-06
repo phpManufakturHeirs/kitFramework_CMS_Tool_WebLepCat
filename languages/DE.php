@@ -23,5 +23,5 @@ $module_description = 'Zusätzliche Anwendungen und Erweiterungen für Ihr Conte
 
 $LANGUAGE = array(
         'addons_support_group'
-            => 'Bitte helfen Sie mit diese Open Source Software zu verbessern und melden Sie das aufgetretene Problem der <a href="https://support.phpmanufaktur.de" target="_blank">phpManufaktur Addons Support</a> Gruppe.'
+            => 'Bitte helfen Sie mit diese Open Source Software zu verbessern und melden Sie das aufgetretene Problem im <a href="http://forum.blackcat-cms.org/viewforum.php?f=24">Forum</a>.'
         );

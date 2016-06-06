@@ -1,8 +1,9 @@
 ### kitFramework CMS Tool
 
-(c) 2013 by phpManufaktur
-Ralf Hertsch, Stockholmer Str. 31, 13359 Berlin (Germany)
-http://phpManufaktur.de - ralf.hertsch@phpManufaktur.de
+**0.51** - 2016-06-06
+
+* Fix for BlackCat CMS v1.2
+* Fix: No longer use authentication for GitHub
 
 **0.42** - 2015-02-04
 

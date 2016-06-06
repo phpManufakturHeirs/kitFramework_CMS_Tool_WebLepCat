@@ -3,9 +3,9 @@
 /**
  * kitFramework::Basic
  *
- * @author Team phpManufaktur <team@phpmanufaktur.de>
- * @link https://addons.phpmanufaktur.de/kitEvent
- * @copyright 2013 Ralf Hertsch <ralf.hertsch@phpmanufaktur.de>
+ * @author Team phpManufaktur <team@phpmanufaktur.info>
+ * @link http://www.phpmanufaktur.info/de/kitframework/erweiterungen/event.php
+ * @copyright 2013 Ralf Hertsch
  * @license MIT License (MIT) http://www.opensource.org/licenses/MIT
  */
 namespace phpManufaktur\kitFramework;
@@ -172,7 +172,7 @@ class Setup
             curl_setopt($ch, CURLOPT_USERAGENT, self::USERAGENT);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
+            // curl_setopt($ch, CURLOPT_USERPWD, self::$auth);
             if (!is_null(self::$proxy)) {
                 curl_setopt($ch, CURLOPT_PROXYAUTH, self::$proxy_auth);
                 curl_setopt($ch, CURLOPT_PROXY, self::$proxy);
@@ -323,6 +323,9 @@ class Setup
             else {
                 throw new \Exception("Missing the constants with the DB settings!");
             }
+        }
+        elseif(defined('CAT_VERSION') && version_compare(CAT_VERSION,'1.2','>=')) {
+            $doctrine_config = CAT_Helper_DB::getConfig();
         }
         else {
             // get the database settings from the CMS
